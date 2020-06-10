@@ -19,7 +19,7 @@ features = correlation[
     | (correlation["NU_NOTA_MT"] >= 0.3) & (correlation["NU_NOTA_MT"] < 1.0)
 ]["NU_NOTA_MT"]
 
-# Adicionando as notas de 'NU_NOTA_MT a lista de features para treinar o modelo
+# Adicionando as notas de 'NU_NOTA_MT a lista de features para treinar o modeloc
 features = features.index.tolist()
 features.append("NU_NOTA_MT")
 
@@ -71,11 +71,5 @@ grid = GridSearchCV(rfr_pipe, paramets, cv=5, n_jobs=-1)
 grid.fit(x_train, y_train)
 
 pred = grid.predict(x_test)
-print("Best Score: {}".format(grid.best_score_))
-print("Best Parameters: {}".format(grid.best_params_))
-print("Best Estimator: {}".format(grid.best_estimator_))
-
-
 df_answer["NU_NOTA_MT"] = pred
-print(df_answer.head(10))
 df_answer.to_csv('answer.csv', index=False, header=True)
