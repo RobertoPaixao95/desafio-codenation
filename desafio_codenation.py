@@ -19,11 +19,11 @@ features = correlation[
     | (correlation["NU_NOTA_MT"] >= 0.3) & (correlation["NU_NOTA_MT"] < 1.0)
 ]["NU_NOTA_MT"]
 
-# Adicionando as notas de 'NU_NOTA_MT a lista de features para treinar o modeloc
+# Adicionando as notas de 'NU_NOTA_MT a lista de features para treinar o modelo
 features = features.index.tolist()
 features.append("NU_NOTA_MT")
 
-# Função que preenche os valores NaN com 0 das colunas de um Dataset
+# Função que preenche os valores NaN com 0 das colunas do Dataset
 
 
 def fill_nan(dataset):
@@ -59,9 +59,9 @@ val_criterion = ["mse"]
 val_mx_features = ["log2"]
 
 paramets = dict(
-    rfr__n_estimators=val_estimator,
-    rfr__criterion=val_criterion,
-    rfr__max_features=val_mx_features,
+    rfr__n_estimators = val_estimator,
+    rfr__criterion = val_criterion,
+    rfr__max_features = val_mx_features,
 )
 
 # Instanciando o GridSearchCV
@@ -72,4 +72,4 @@ grid.fit(x_train, y_train)
 
 pred = grid.predict(x_test)
 df_answer["NU_NOTA_MT"] = pred
-df_answer.to_csv('answer.csv', index=False, header=True)
+df_answer.to_csv("answer.csv", index=False, header=True)
